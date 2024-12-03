@@ -15,14 +15,7 @@ pipeline {
         stage('Extract Env Variables') {
             steps {
                 script {
-                    // .env 파일 권한 확인 후, 읽기/쓰기 권한 추가
-                    sh 'chmod 644 .env'
-
-                    // 작업 디렉토리에 쓰기 권한 부여
-                    sh 'chmod 777 .'
-
-                    // .env 파일을 작업 디렉토리에 복사
-		    sh "cat ${MY_ENV_FILE} > .env"
+                    writeFile file: '.env', text: readFile(MY_ENV_FILE)
 
                 }
             }
