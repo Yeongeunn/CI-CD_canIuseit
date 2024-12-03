@@ -22,7 +22,7 @@ const Product = sequelize.define('Product', {
         type: DataTypes.INTEGER,
         references: {
             model: Category, // Category 모델을 참조
-            key: 'id',
+            key: 'categoryId',
         },
         allowNull: false,
     },
