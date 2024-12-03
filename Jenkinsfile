@@ -34,6 +34,7 @@ pipeline {
                     --network $NETWORK_NAME \
                     -e MYSQL_ROOT_PASSWORD=cancanii! \
                     -e MYSQL_DATABASE=canIuseit_db \
+		    --default-authentication-plugin=mysql_native_password \
                     -p 3306:3306 mysql:8
                     '''
                 }
