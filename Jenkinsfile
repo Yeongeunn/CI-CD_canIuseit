@@ -30,11 +30,16 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    docker run -d --name $DB_CONTAINER_NAME \
+		    #초기화 SQL 파일 생성
+		    echo "ALTER USER 'root'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'cancanii!';" > init.sql
+           	    echo "FLUSH PRIVILEGES;" >> init.sql
+                   
+	 	    #MySQL 컨테이너 실행
+		    docker run -d --name $DB_CONTAINER_NAME \
                     --network $NETWORK_NAME \
                     -e MYSQL_ROOT_PASSWORD=cancanii! \
                     -e MYSQL_DATABASE=canIuseit_db \
-		    --default-authentication-plugin=mysql_native_password \
+		    -v $(pwd)/init.sql:/docker-entrypoint-initdb.d/init.sql \
                     -p 3306:3306 mysql:8
                     '''
                 }
