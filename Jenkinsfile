@@ -7,7 +7,7 @@ pipeline {
         NETWORK_NAME = 'canIuseit_network'
         DB_CONTAINER_NAME = 'canIuseit_dbc'
         WEB_CONTAINER_NAME = 'canIuseit_web'
-        WEB_IMAGE_NAME = 'dppfls/caniuseit_web 1.0'
+        WEB_IMAGE_NAME = 'dppfls/caniuseit_web:1.0'
         JENKINS_SERVER_ADDR = '34.83.123.95'
     }
 
